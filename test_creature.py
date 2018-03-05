@@ -39,5 +39,37 @@ class TestCreatures(unittest.TestCase):
 
             count -= 1
 
+    def test_alive(self):
+        '''
+        Test is alive function
+        Summary: Tests creatures:is_alive function's ability to determine if object is still alive
+        '''
+        test_subject = Creature()
+        damage = int(test_subject.get_health() / 2)  # calculate approx half of the creatures health
+        test_subject.deal_damage(damage)
+
+        # test if creatures is still alive
+        self.assertTrue(test_subject.is_alive())
+
+        test_subject.deal_damage(damage * 2)  # this should clearly go into the negative health
+        self.assertFalse(test_subject.is_alive())
+
+        # begin random damage tests
+        count = 100
+        while count > 0:
+            test_random_subject = Creature()
+            beggining_health = test_random_subject.get_health()  # get initial health
+            damage = random.randint(0, beggining_health * 2)  # find a random damage number that will often be more thanb creature health
+
+            # deal the damage
+            test_random_subject.deal_damage(damage)
+
+            if damage >= beggining_health:  # damage was more than the poor creature could stand
+                self.assertFalse(test_random_subject.is_alive())
+            else:  # the brave and valliant creature is alive!!!
+                self.assertTrue(test_random_subject.is_alive())
+
+            count -= 1
+
 
 unittest.main()
