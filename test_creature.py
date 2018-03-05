@@ -20,11 +20,7 @@ class TestCreatures(unittest.TestCase):
         # make the comparison
         self.assertEqual(initial_health, end_health + 50)
 
-    def test_random_damage(self):
-        '''
-        Test random damage
-        Summary: tests Creature.deal_damage with multiple random amounts
-        '''
+        # conduct random tests
         count = 100  # controls how many times we do the test
         while count > 0:  # continue until we count down to 0
             test_subject = Creature()  # we build our test subject every time
